@@ -1,0 +1,54 @@
+{
+  "contacts": [
+    {
+      "id": "1",
+      "name": "Ana Silva",
+      "email": "ana.silva@example.com",
+      "phone": "+55 11 91234-5678",
+      "address": "Rua das Flores, 123, São Paulo, SP",
+      "birthday": "1990-05-20",
+      "createdAt": 1717017600000,
+      "updatedAt": 1717104000000
+    },
+    {
+      "id": "2",
+      "name": "Carlos Souza",
+      "email": "carlos.souza@example.com",
+      "phone": "+55 21 92345-6789",
+      "address": "Avenida Central, 456, Rio de Janeiro, RJ",
+      "birthday": "1985-09-15",
+      "createdAt": 1716931200000,
+      "updatedAt": 1717104000000
+    },
+    {
+      "id": "3",
+      "name": "Beatriz Oliveira",
+      "email": "beatriz.oliveira@example.com",
+      "phone": "+55 31 93456-7890",
+      "address": "Praça das Nações, 789, Belo Horizonte, MG",
+      "birthday": "1995-12-01",
+      "createdAt": 1716844800000,
+      "updatedAt": 1717104000000
+    },
+    {
+      "id": "4",
+      "name": "Daniel Lima",
+      "email": "daniel.lima@example.com",
+      "phone": "+55 41 94567-8901",
+      "address": "Rua Verde, 321, Curitiba, PR",
+      "birthday": "1988-07-07",
+      "createdAt": 1716758400000,
+      "updatedAt": 1717104000000
+    },
+    {
+      "id": "5",
+      "name": "Fernanda Costa",
+      "email": "fernanda.costa@example.com",
+      "phone": "+55 51 95678-9012",
+      "address": "Avenida Azul, 654, Porto Alegre, RS",
+      "birthday": "1992-03-30",
+      "createdAt": 1716672000000,
+      "updatedAt": 1717104000000
+    }
+  ]
+}

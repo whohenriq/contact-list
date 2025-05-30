@@ -11,6 +11,7 @@
   "dependencies": {
     "@radix-ui/react-avatar": "^1.1.10",
     "@radix-ui/react-slot": "^1.2.3",
+    "@tanstack/react-query": "^5.79.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "lodash-es": "^4.17.21",
@@ -32,6 +33,7 @@
     "eslint": "^9",
     "eslint-config-next": "15.3.3",
     "eslint-config-prettier": "^10.1.5",
+    "json-server": "^1.0.0-beta.3",
     "postcss": "^8.5.4",
     "prettier-plugin-tailwindcss": "^0.6.12",
     "tailwindcss": "^4",
