@@ -1,11 +1,10 @@
-"use client";
-
 import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
 import "./globals.css";
+import { Registry } from "./registry";
 import { ThemeProvider } from "@/components/ui/theme";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { useState } from "react";
+import { ModeToggle } from "@/components/ui/mode-toggle";
+import { Search } from "@/components/search";
 
 const roboto = Roboto({
   variable: "--font-roboto",
@@ -22,16 +21,16 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const [queryClient] = useState(() => new QueryClient());
-
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${roboto.variable} $ antialiased`}>
-        <QueryClientProvider client={queryClient}>
+        <Registry>
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+            <ModeToggle />
+            <Search />
             {children}
           </ThemeProvider>
-        </QueryClientProvider>
+        </Registry>
       </body>
     </html>
   );
