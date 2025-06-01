@@ -3,8 +3,6 @@ import { Roboto } from "next/font/google";
 import "./globals.css";
 import { Registry } from "./registry";
 import { ThemeProvider } from "@/components/ui/theme";
-import { ModeToggle } from "@/components/ui/mode-toggle";
-import { Search } from "@/components/search";
 
 const roboto = Roboto({
   variable: "--font-roboto",
@@ -26,8 +24,6 @@ export default function RootLayout({
       <body className={`${roboto.variable} $ antialiased`}>
         <Registry>
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-            <ModeToggle />
-            <Search />
             {children}
           </ThemeProvider>
         </Registry>

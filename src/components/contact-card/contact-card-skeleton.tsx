@@ -9,6 +9,7 @@ export function ContactCardSkeleton() {
           <div className="space-y-2 flex-1">
             <div className="h-4 bg-foreground rounded w-3/4"></div>
             <div className="h-3 bg-foreground rounded w-1/2"></div>
+            <div className="h-3 bg-foreground rounded w-1/2"></div>
           </div>
         </div>
       </CardContent>
