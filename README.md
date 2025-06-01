@@ -44,5 +44,6 @@ json-server --watch server.json --port 3001
 Crie um arquivo .env.local na raiz do projeto e adicione as variáveis necessárias, como no exemplo do arquivo .env.EXAMPLE:
 
 ```bash
+API_HOST=http://localhost:3001
 NEXT_PUBLIC_API_URL=http://localhost:3001
 ```
