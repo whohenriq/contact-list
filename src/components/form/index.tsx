@@ -14,6 +14,7 @@ import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "../ui/button";
+import Link from "next/link";
 
 export const contactSchema = z.object({
   name: z.string().min(2, { message: "Deve conter no mínimo 2 caracteres" }),
@@ -133,7 +134,9 @@ export function ContactForm() {
         </div>
 
         <div className="flex justify-between items-center h-full w-full mt-6">
-          <Button variant={"destructive"}>Cancelar</Button>
+          <Button variant={"destructive"}>
+            <Link href="/">Cancelar</Link>
+          </Button>
           <Button type="submit" variant={"default"}>
             Enviar
           </Button>

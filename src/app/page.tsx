@@ -1,9 +1,13 @@
+import { NavBar } from "@/components/navbar";
 import { ContactsList } from "./_components/contacts-list";
 
 export default function Home() {
   return (
-    <main className="flex justify-center items-center w-full min-h-screen bg-background gap-8">
-      <ContactsList />
-    </main>
+    <div className="flex flex-col min-h-screen bg-background">
+      <NavBar />
+      <main>
+        <ContactsList />
+      </main>
+    </div>
   );
 }

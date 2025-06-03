@@ -12,7 +12,7 @@ export function Search() {
     <div className="relative">
       <SearchIcon className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
       <Input
-        placeholder="Search contacts..."
+        placeholder="Pesquisar contato..."
         value={query}
         onChange={handleQueryChange}
         className="pl-10 pr-10"
