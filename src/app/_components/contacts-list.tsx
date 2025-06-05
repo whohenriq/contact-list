@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button";
 import { Contact } from "@/types/contact";
 import { useQuery } from "@tanstack/react-query";
 import { Search } from "lucide-react";
+import Link from "next/link";
 
 export function ContactsList() {
   const { debouncedSearch } = useSearch();
@@ -20,7 +21,7 @@ export function ContactsList() {
 
   const renderEmptyMessage = () => {
     return (
-      <div className="text-center py-12">
+      <div className="text-center py-12 ">
         <Search className="mx-auto h-12 w-12 text-muted-foreground mb-4" />
         <h2 className="text-2xl font-semibold mb-2">
           Nenhum contato encontrado!
@@ -31,7 +32,9 @@ export function ContactsList() {
             : "Adicione seu primeiro contato para começar"}
         </p>
         {!debouncedSearch && (
-          <Button className="h-11 cursor-pointer">Adicionar contato</Button>
+          <Button className="h-11 cursor-pointer">
+            <Link href={"/contact/add"}>Adicionar contato</Link>
+          </Button>
         )}
       </div>
     );

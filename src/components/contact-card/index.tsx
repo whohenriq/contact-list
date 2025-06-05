@@ -17,13 +17,13 @@ export function ContactCard({ contact }: ContactProps) {
   return (
     <Card
       key={contact.id}
-      className="overflow-hidden group hover:shadow-md transition-shadow duration-200"
+      className="overflow-hidden group hover:shadow-md transition-shadow duration-200 cursor-pointer"
     >
-      <CardContent className="p-0">
-        <div
-          className="p-6 cursor-pointer flex items-start justify-between gap-4"
-          onClick={() => router.push(`/contacts/${contact.id}`)}
-        >
+      <CardContent
+        className="p-0"
+        onClick={() => router.push(`/contacts/${contact.id}`)}
+      >
+        <div className="flex items-start justify-between gap-4 p-4">
           <div className="flex items-start gap-4">
             <Avatar className="h-12 w-12">
               <AvatarFallback className="bg-primary text-primary-foreground">

@@ -10,8 +10,8 @@ const roboto = Roboto({
 });
 
 export const metadata: Metadata = {
-  title: "Contact Manager",
-  description: "Manage your contacts easily with this app",
+  title: "Lista de contatos",
+  description: "Gerencie seus contatos facilmente com este aplicativo.",
 };
 
 export default function RootLayout({
@@ -20,8 +20,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className={`${roboto.variable} $ antialiased`}>
+    <html lang="pt-BR" suppressHydrationWarning>
+      <body className={`${roboto.variable} `}>
         <Registry>
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
             {children}
