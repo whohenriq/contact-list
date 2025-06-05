@@ -1,5 +1,8 @@
 "use client";
 
+import Link from "next/link";
+import { Button } from "../ui/button";
+import { Input } from "@/components/ui/input";
 import {
   Form,
   FormField,
@@ -8,48 +11,10 @@ import {
   FormLabel,
   FormMessage,
 } from "../ui/form";
-import { Input } from "@/components/ui/input";
-
-import { z } from "zod";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { Button } from "../ui/button";
-import Link from "next/link";
-
-export const contactSchema = z.object({
-  name: z.string().min(2, { message: "Deve conter no mínimo 2 caracteres" }),
-  email: z.string().email("E-mail inválido").optional(),
-  phone: z
-    .string()
-    .regex(/^\+?\d{10,15}$/, "Telefone inválido (ex: +5511999999999)")
-    .optional(),
-  address: z.string().optional(),
-  birthday: z
-    .string()
-    .regex(
-      /^\d{4}-\d{2}-\d{2}$/,
-      "Data de nascimento deve estar no formato YYYY-MM-DD"
-    )
-    .optional(),
-});
-
-export type ContactFormSchema = z.infer<typeof contactSchema>;
+import { useContactForm } from "./useContactForm";
 
 export function ContactForm() {
-  const form = useForm<ContactFormSchema>({
-    resolver: zodResolver(contactSchema),
-    defaultValues: {
-      name: "",
-      email: "",
-      phone: "",
-      address: "",
-      birthday: "",
-    },
-  });
-
-  const onSubmit = (data: ContactFormSchema) => {
-    console.log("Formulário enviado:", data);
-  };
+  const { form, onSubmit } = useContactForm();
 
   return (
     <Form {...form}>
@@ -65,7 +30,7 @@ export function ContactForm() {
               <FormItem>
                 <FormLabel>Nome</FormLabel>
                 <FormControl>
-                  <Input {...field} placeholder="John Doe" />
+                  <Input {...field} placeholder="Ex: Meu Nome" />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -95,7 +60,7 @@ export function ContactForm() {
               <FormItem>
                 <FormLabel>E-mail</FormLabel>
                 <FormControl>
-                  <Input {...field} placeholder="johndoe@email.com" />
+                  <Input {...field} placeholder="example@email.com" />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -109,7 +74,7 @@ export function ContactForm() {
               <FormItem>
                 <FormLabel>Telefone</FormLabel>
                 <FormControl>
-                  <Input {...field} placeholder="+5511999999999" />
+                  <Input {...field} placeholder="Ex: +55 11 91234-5678" />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -137,6 +102,7 @@ export function ContactForm() {
           <Button variant={"destructive"}>
             <Link href="/">Cancelar</Link>
           </Button>
+
           <Button type="submit" variant={"default"}>
             Enviar
           </Button>
