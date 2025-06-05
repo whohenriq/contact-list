@@ -6,6 +6,8 @@ import { Avatar, AvatarFallback } from "../ui/avatar";
 import { Card, CardContent } from "../ui/card";
 import { Mail, Phone } from "lucide-react";
 import { getInitials } from "@/lib/utils";
+import { Trash2, SquarePen } from "lucide-react";
+import { Button } from "../ui/button";
 
 interface ContactProps {
   contact: Contact;
@@ -51,6 +53,21 @@ export function ContactCard({ contact }: ContactProps) {
           </div>
         </div>
       </CardContent>
+      <div className="flex w-fit items-center mt-4 gap-4">
+        <Button
+          variant="secondary"
+          size="sm"
+          className="cursor-pointer"
+          onClick={() => router.push(`/contact/edit/${contact.id}`)}
+        >
+          <SquarePen />
+          Editar
+        </Button>
+        <Button variant="destructive" size="sm" className="cursor-pointer">
+          <Trash2 />
+          Deletar
+        </Button>
+      </div>
     </Card>
   );
 }

@@ -8,6 +8,8 @@ import { useToast } from "@/hooks/use-toast";
 import { useState } from "react";
 import { addNewContact } from "@/actions/add-contact";
 import { useQueryClient } from "@tanstack/react-query";
+import { Contact } from "@/types/contact";
+import { PutContact } from "@/actions/patch-contact";
 
 export const contactSchema = z.object({
   name: z.string().min(2, { message: "Deve conter no mínimo 2 caracteres" }),
@@ -31,7 +33,11 @@ export const contactSchema = z.object({
 
 export type ContactFormSchema = z.infer<typeof contactSchema>;
 
-export function useContactForm() {
+interface UseContactFormProps {
+  contact?: Contact;
+}
+
+export function useContactForm({ contact }: UseContactFormProps) {
   const router = useRouter();
   const { toast } = useToast();
   const queryClient = useQueryClient();
@@ -39,11 +45,11 @@ export function useContactForm() {
 
   const form = useForm<ContactFormSchema>({
     defaultValues: {
-      name: "",
-      email: "",
-      phone: "",
-      address: "",
-      birthday: "",
+      name: contact?.name || "",
+      email: contact?.email || "",
+      phone: contact?.phone || "",
+      address: contact?.address || "",
+      birthday: contact?.birthday || "",
     },
     resolver: zodResolver(contactSchema),
   });
@@ -55,11 +61,15 @@ export function useContactForm() {
   const onSubmit = async (data: ContactFormSchema) => {
     setIsSubmitting(true);
     try {
-      const response = await addNewContact({ data });
+      const response = contact
+        ? await PutContact({ data: { id: contact.id!, ...data } })
+        : await addNewContact({ data });
 
       if (!response) {
         toast({
-          title: "Erro ao criar nova sessão!",
+          title: contact
+            ? "Erro ao atualizar contato!"
+            : "Erro ao criar contato!",
           variant: "destructive",
         });
         return;
@@ -69,7 +79,9 @@ export function useContactForm() {
         type: "active",
       });
       toast({
-        title: "Novo contato criado com sucesso!",
+        title: contact
+          ? "Contato atualizado com sucesso!"
+          : "Novo contato criado com sucesso!",
         variant: "default",
       });
       form.reset();

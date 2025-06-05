@@ -12,9 +12,15 @@ import {
   FormMessage,
 } from "../ui/form";
 import { useContactForm } from "./useContactForm";
+import { Contact } from "@/types/contact";
 
-export function ContactForm() {
-  const { form, onSubmit } = useContactForm();
+interface ContactFormProps {
+  isEdit?: boolean;
+  contact?: Contact;
+}
+
+export function ContactForm({ isEdit = false, contact }: ContactFormProps) {
+  const { form, onSubmit } = useContactForm({ contact });
 
   return (
     <Form {...form}>
