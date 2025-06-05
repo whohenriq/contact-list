@@ -1,13 +1,22 @@
 "use client";
 
+import { useState } from "react";
+import type React from "react";
+
 import { useRouter } from "next/navigation";
-import { Contact } from "@/types/contact";
-import { Avatar, AvatarFallback } from "../ui/avatar";
-import { Card, CardContent } from "../ui/card";
-import { Mail, Phone } from "lucide-react";
+import type { Contact } from "@/types/contact";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { Card, CardContent } from "@/components/ui/card";
+import { Mail, Phone, MoreVertical, Trash2, SquarePen } from "lucide-react";
 import { getInitials } from "@/lib/utils";
-import { Trash2, SquarePen } from "lucide-react";
-import { Button } from "../ui/button";
+import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { DeleteContactModal } from "../delete-contact-modal";
 
 interface ContactProps {
   contact: Contact;
@@ -15,59 +24,92 @@ interface ContactProps {
 
 export function ContactCard({ contact }: ContactProps) {
   const router = useRouter();
+  const [isDialogDeleteOpen, setisDialogDeleteOpen] = useState(false);
+
+  const handleEdit = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    router.push(`/contact/edit/${contact.id}`);
+  };
+
+  const handleDeleteClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setisDialogDeleteOpen(true);
+  };
 
   return (
-    <Card
-      key={contact.id}
-      className="overflow-hidden group hover:shadow-md transition-shadow duration-200 cursor-pointer"
-    >
-      <CardContent
-        className="p-0"
-        onClick={() => router.push(`/contacts/${contact.id}`)}
+    <>
+      <Card
+        key={contact.id}
+        className="overflow-hidden group hover:shadow-md transition-shadow duration-200 cursor-pointer"
       >
-        <div className="flex items-start justify-between gap-4 p-4">
-          <div className="flex items-start gap-4">
-            <Avatar className="h-12 w-12">
-              <AvatarFallback className="bg-primary text-primary-foreground">
-                {getInitials(contact.name)}
-              </AvatarFallback>
-            </Avatar>
-            <div>
-              <h3 className="font-medium">{contact.name}</h3>
+        <CardContent
+          className="p-0"
+          onClick={() => router.push(`/contacts/${contact.id}`)}
+        >
+          <div className="flex items-start justify-between gap-4 p-4">
+            <div className="flex items-start gap-4">
+              <Avatar className="h-12 w-12">
+                <AvatarFallback className="bg-primary text-primary-foreground">
+                  {getInitials(contact.name)}
+                </AvatarFallback>
+              </Avatar>
+              <div>
+                <h3 className="font-medium">{contact.name}</h3>
 
-              <div className="mt-2 space-y-1">
-                {contact.email && (
-                  <div className="flex items-center gap-1 text-sm text-muted-foreground">
-                    <Mail className="h-3 w-3" />
-                    <span>{contact.email}</span>
-                  </div>
-                )}
-                {contact.phone && (
-                  <div className="flex items-center gap-1 text-sm text-muted-foreground">
-                    <Phone className="h-3 w-3" />
-                    <span>{contact.phone}</span>
-                  </div>
-                )}
+                <div className="mt-2 space-y-1">
+                  {contact.email && (
+                    <div className="flex items-center gap-1 text-sm text-muted-foreground">
+                      <Mail className="h-3 w-3" />
+                      <span>{contact.email}</span>
+                    </div>
+                  )}
+                  {contact.phone && (
+                    <div className="flex items-center gap-1 text-sm text-muted-foreground">
+                      <Phone className="h-3 w-3" />
+                      <span>{contact.phone}</span>
+                    </div>
+                  )}
+                </div>
               </div>
             </div>
+
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild onClick={(e) => e.stopPropagation()}>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="h-8 w-8 rounded-full"
+                >
+                  <MoreVertical className="h-4 w-4" />
+                  <span className="sr-only">Abrir opções</span>
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="w-[160px]">
+                <DropdownMenuItem
+                  onClick={handleEdit}
+                  className="cursor-pointer"
+                >
+                  <SquarePen className="mr-2 h-4 w-4" />
+                  <span>Editar</span>
+                </DropdownMenuItem>
+                <DropdownMenuItem
+                  onClick={handleDeleteClick}
+                  className="cursor-pointer text-destructive focus:text-destructive"
+                >
+                  <Trash2 className="mr-2 h-4 w-4" />
+                  <span>Deletar</span>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
           </div>
-        </div>
-      </CardContent>
-      <div className="flex w-fit items-center mt-4 gap-4">
-        <Button
-          variant="secondary"
-          size="sm"
-          className="cursor-pointer"
-          onClick={() => router.push(`/contact/edit/${contact.id}`)}
-        >
-          <SquarePen />
-          Editar
-        </Button>
-        <Button variant="destructive" size="sm" className="cursor-pointer">
-          <Trash2 />
-          Deletar
-        </Button>
-      </div>
-    </Card>
+        </CardContent>
+      </Card>
+
+      <DeleteContactModal
+        contact={contact}
+        isDialogDeleteOpen={isDialogDeleteOpen}
+        setIsDialogDeleteOpen={setisDialogDeleteOpen}
+      />
+    </>
   );
 }
