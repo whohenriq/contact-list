@@ -23,9 +23,10 @@ export function ModeToggle() {
 
   return (
     <Button
+      className="border-brand-button cursor-pointer"
+      variant={"ghost"}
       onClick={toggleTheme}
       aria-label={`Switch to ${theme === "light" ? "dark" : "light"} theme`}
-      className="border-brand-button"
     >
       {theme === "light" ? (
         <MoonIcon className="h-[1.5rem] w-[1.5rem]" />
