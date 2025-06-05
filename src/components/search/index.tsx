@@ -5,18 +5,20 @@ import { Search as SearchIcon, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useSearch } from "./useSearch";
 
-export function Search() {
+export function SearchBar() {
   const { query, clearSearch, handleQueryChange } = useSearch();
 
   return (
-    <div className="relative">
+    <div className="relative w-full">
       <SearchIcon className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+
       <Input
-        placeholder="Pesquisar contato..."
+        placeholder="Pesquisar contato"
         value={query}
         onChange={handleQueryChange}
-        className="pl-10 pr-10"
+        className="pl-10 pr-10 w-full"
       />
+
       {query && (
         <Button
           variant="ghost"
