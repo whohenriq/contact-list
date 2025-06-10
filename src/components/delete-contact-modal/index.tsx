@@ -43,7 +43,8 @@ export function DeleteContactModal({
       });
 
       toast({
-        title: `${contact.name} removido da sua lista com sucesso.`,
+        title: `O Contato "${contact.name}" foi removido com sucesso.`,
+        description: "Sua agenda de contatos foi atualizada.",
         variant: "success",
         duration: 2500,
       });

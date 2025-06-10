@@ -28,7 +28,7 @@ export function ContactForm({ isEdit = false, contact }: ContactFormProps) {
         onSubmit={form.handleSubmit(onSubmit)}
         className="space-y-6 h-fit gap-4"
       >
-        <div className="grid grid-cols-2 gap-6">
+        <div className="flex flex-col gap-6 h-fit px-6 lg:grid lg:grid-cols-2 lg:px-0 md:px-0">
           <FormField
             control={form.control}
             name="name"
@@ -58,7 +58,7 @@ export function ContactForm({ isEdit = false, contact }: ContactFormProps) {
           />
         </div>
 
-        <div className="grid grid-cols-2 gap-6">
+        <div className="flex flex-col gap-6 h-fit px-6 lg:grid lg:grid-cols-2 lg:px-0 md:px-0">
           <FormField
             control={form.control}
             name="email"
@@ -88,7 +88,7 @@ export function ContactForm({ isEdit = false, contact }: ContactFormProps) {
           />
         </div>
 
-        <div>
+        <div className="px-6 lg:px-0 md:px-0">
           <FormField
             control={form.control}
             name="address"
@@ -104,8 +104,8 @@ export function ContactForm({ isEdit = false, contact }: ContactFormProps) {
           />
         </div>
 
-        <div className="flex justify-between items-center h-full w-full mt-6">
-          <Button variant={"destructive"} type="button">
+        <div className="flex justify-between items-center h-full w-full mt-6 px-6 lg:px-0 md:px-0">
+          <Button type="button" className="bg-red-600 hover:bg-red-700">
             <Link href="/">Cancelar</Link>
           </Button>
 

@@ -29,7 +29,7 @@ export function NavBar({ isHome = false }: NavBarProps) {
       >
         <div className="flex items-center justify-between w-full">
           <Link href="/" className="text-base lg:text-2xl font-bold">
-            Lista de Contatos
+            Agenda de Contatos
           </Link>
 
           {isMobile ? (

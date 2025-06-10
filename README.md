@@ -47,3 +47,9 @@ Crie um arquivo .env.local na raiz do projeto e adicione as variáveis necessár
 API_HOST=http://localhost:3001
 NEXT_PUBLIC_API_URL=http://localhost:3001
 ```
+
+### Iniciar aplicação:
+
+```bash
+npm run dev
+```

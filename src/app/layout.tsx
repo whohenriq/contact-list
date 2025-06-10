@@ -10,7 +10,7 @@ const roboto = Roboto({
 });
 
 export const metadata: Metadata = {
-  title: "Lista de contatos",
+  title: "Agenda de Contatos",
   description: "Gerencie seus contatos facilmente com este aplicativo.",
 };
 

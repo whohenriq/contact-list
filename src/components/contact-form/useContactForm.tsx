@@ -13,14 +13,13 @@ import { putContact } from "@/actions/patch-contact";
 
 export const contactSchema = z.object({
   name: z.string().min(2, { message: "Deve conter no mínimo 2 caracteres" }),
-  email: z.string().email("E-mail inválido").optional(),
+  email: z.string().email("E-mail inválido"),
   phone: z
     .string()
     .regex(
       /^(\+55\s?)?(\(?\d{2}\)?\s?)?\d{4,5}-?\d{4}$/,
       "Telefone inválido (ex: (XX) XXXXX-XXXX)"
-    )
-    .optional(),
+    ),
   address: z.string().optional(),
   birthday: z
     .string()
@@ -62,7 +61,7 @@ export function useContactForm({ contact }: UseContactFormProps) {
     setIsSubmitting(true);
     try {
       const response = contact
-        ? await putContact({ data: { id: contact.id!, ...data } })
+        ? await putContact({ data: { id: contact.id, ...data } })
         : await addNewContact({ data });
 
       if (!response) {
@@ -87,8 +86,6 @@ export function useContactForm({ contact }: UseContactFormProps) {
         variant: "success",
         duration: 2500,
       });
-
-      form.reset();
     } catch (error) {
       console.error("Error submitting form:", error);
     } finally {
