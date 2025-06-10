@@ -4,6 +4,7 @@ import { API_HOST } from "./const";
 import { Contact } from "@/types/contact";
 
 type CreateContactProps = Omit<Contact, "id" | "createdAt" | "updatedAt">;
+
 export async function addNewContact({ data }: { data: CreateContactProps }) {
   try {
     const body = data;

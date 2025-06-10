@@ -14,9 +14,7 @@ export async function deleteContact({ contactId }: DeleteContactProps) {
 
     const url = new URL(`${API_HOST}/contacts/${contactId}`);
 
-    const response = await fetch(url.href, fetchOptions);
-
-    return response;
+    await fetch(url.href, fetchOptions);
   } catch (error) {
     console.error(error);
   }

@@ -3,7 +3,7 @@
 import { Input } from "@/components/ui/input";
 import { Search as SearchIcon, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useSearch } from "./useSearch";
+import { useSearch } from "@/hooks/useSearch";
 
 export function SearchBar() {
   const { query, clearSearch, handleQueryChange } = useSearch();

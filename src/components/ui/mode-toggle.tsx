@@ -14,7 +14,7 @@ export function ModeToggle() {
   }, []);
 
   if (!mounted) {
-    return null;
+    return;
   }
 
   const toggleTheme = () => {

@@ -80,7 +80,7 @@ export function ContactForm({ isEdit = false, contact }: ContactFormProps) {
               <FormItem>
                 <FormLabel>Telefone</FormLabel>
                 <FormControl>
-                  <Input {...field} placeholder="Ex: +55 11 91234-5678" />
+                  <Input {...field} placeholder="Ex: (11) 91234-5678" />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -105,12 +105,12 @@ export function ContactForm({ isEdit = false, contact }: ContactFormProps) {
         </div>
 
         <div className="flex justify-between items-center h-full w-full mt-6">
-          <Button variant={"destructive"}>
+          <Button variant={"destructive"} type="button">
             <Link href="/">Cancelar</Link>
           </Button>
 
           <Button type="submit" variant={"default"}>
-            Enviar
+            {isEdit ? "Editar" : "Criar"}
           </Button>
         </div>
       </form>

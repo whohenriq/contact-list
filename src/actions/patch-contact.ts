@@ -3,12 +3,12 @@
 import { API_HOST } from "./const";
 import { Contact } from "@/types/contact";
 
-export interface PutContactProps
+export interface putContactProps
   extends Omit<Contact, "createdAt" | "updatedAt"> {
   id: Contact["id"];
 }
 
-export async function PutContact({ data }: { data: PutContactProps }) {
+export async function putContact({ data }: { data: putContactProps }) {
   try {
     const { id, ...body } = data;
 

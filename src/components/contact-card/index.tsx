@@ -40,68 +40,63 @@ export function ContactCard({ contact }: ContactProps) {
     <>
       <Card
         key={contact.id}
-        className="overflow-hidden group hover:shadow-md transition-shadow duration-200 cursor-pointer"
+        className="hover:shadow-md transition-shadow duration-200 cursor-pointer"
       >
         <CardContent
-          className="p-0"
+          className="flex items-start justify-between gap-4 px-4"
           onClick={() => router.push(`/contacts/${contact.id}`)}
         >
-          <div className="flex items-start justify-between gap-4 p-4">
-            <div className="flex items-start gap-4">
-              <Avatar className="h-12 w-12">
-                <AvatarFallback className="bg-primary text-primary-foreground">
-                  {getInitials(contact.name)}
-                </AvatarFallback>
-              </Avatar>
-              <div>
-                <h3 className="font-medium">{contact.name}</h3>
+          <div className="flex items-start gap-4">
+            <Avatar className="h-12 w-12">
+              <AvatarFallback className="bg-primary text-primary-foreground font-bold">
+                {getInitials(contact.name)}
+              </AvatarFallback>
+            </Avatar>
+            <div>
+              <h3 className="font-medium">{contact.name}</h3>
 
-                <div className="mt-2 space-y-1">
-                  {contact.email && (
-                    <div className="flex items-center gap-1 text-sm text-muted-foreground">
-                      <Mail className="h-3 w-3" />
-                      <span>{contact.email}</span>
-                    </div>
-                  )}
-                  {contact.phone && (
-                    <div className="flex items-center gap-1 text-sm text-muted-foreground">
-                      <Phone className="h-3 w-3" />
-                      <span>{contact.phone}</span>
-                    </div>
-                  )}
-                </div>
+              <div className="mt-2">
+                {contact.email && (
+                  <div className="flex items-center gap-1 text-sm text-muted-foreground">
+                    <Mail className="h-4 w-4 text-primary" />
+                    <span>{contact.email}</span>
+                  </div>
+                )}
+                {contact.phone && (
+                  <div className="flex items-center gap-1 text-sm text-muted-foreground">
+                    <Phone className="h-4 w-4 text-primary" />
+                    <span>{contact.phone}</span>
+                  </div>
+                )}
               </div>
             </div>
-
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild onClick={(e) => e.stopPropagation()}>
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  className="h-8 w-8 rounded-full"
-                >
-                  <MoreVertical className="h-4 w-4" />
-                  <span className="sr-only">Abrir opções</span>
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end" className="w-[160px]">
-                <DropdownMenuItem
-                  onClick={handleEdit}
-                  className="cursor-pointer"
-                >
-                  <SquarePen className="mr-2 h-4 w-4" />
-                  <span>Editar</span>
-                </DropdownMenuItem>
-                <DropdownMenuItem
-                  onClick={handleDeleteClick}
-                  className="cursor-pointer text-destructive focus:text-destructive"
-                >
-                  <Trash2 className="mr-2 h-4 w-4" />
-                  <span>Deletar</span>
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
           </div>
+
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild onClick={(e) => e.stopPropagation()}>
+              <Button
+                variant="ghost"
+                size="icon"
+                className="h-8 w-8 rounded-full"
+              >
+                <MoreVertical className="h-4 w-4" />
+                <span className="sr-only">Abrir opções</span>
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end" className="w-[160px]">
+              <DropdownMenuItem onClick={handleEdit} className="cursor-pointer">
+                <SquarePen className="mr-2 h-4 w-4" />
+                <span>Editar</span>
+              </DropdownMenuItem>
+              <DropdownMenuItem
+                onClick={handleDeleteClick}
+                className="cursor-pointer text-destructive focus:text-destructive"
+              >
+                <Trash2 className="mr-2 h-4 w-4" />
+                <span>Deletar</span>
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
         </CardContent>
       </Card>
 

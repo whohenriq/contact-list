@@ -9,7 +9,7 @@ import { useState } from "react";
 import { addNewContact } from "@/actions/add-contact";
 import { useQueryClient } from "@tanstack/react-query";
 import { Contact } from "@/types/contact";
-import { PutContact } from "@/actions/patch-contact";
+import { putContact } from "@/actions/patch-contact";
 
 export const contactSchema = z.object({
   name: z.string().min(2, { message: "Deve conter no mínimo 2 caracteres" }),
@@ -18,7 +18,7 @@ export const contactSchema = z.object({
     .string()
     .regex(
       /^(\+55\s?)?(\(?\d{2}\)?\s?)?\d{4,5}-?\d{4}$/,
-      "Telefone inválido (ex: +55 11 91234-5678)"
+      "Telefone inválido (ex: (XX) XXXXX-XXXX)"
     )
     .optional(),
   address: z.string().optional(),
@@ -62,7 +62,7 @@ export function useContactForm({ contact }: UseContactFormProps) {
     setIsSubmitting(true);
     try {
       const response = contact
-        ? await PutContact({ data: { id: contact.id!, ...data } })
+        ? await putContact({ data: { id: contact.id!, ...data } })
         : await addNewContact({ data });
 
       if (!response) {
@@ -71,19 +71,23 @@ export function useContactForm({ contact }: UseContactFormProps) {
             ? "Erro ao atualizar contato!"
             : "Erro ao criar contato!",
           variant: "destructive",
+          duration: 2500,
         });
-        return;
       }
+
       queryClient.invalidateQueries({
         queryKey: ["contacts"],
         type: "active",
       });
+
       toast({
         title: contact
           ? "Contato atualizado com sucesso!"
           : "Novo contato criado com sucesso!",
-        variant: "default",
+        variant: "success",
+        duration: 2500,
       });
+
       form.reset();
     } catch (error) {
       console.error("Error submitting form:", error);
