@@ -15,12 +15,12 @@ interface NavBarProps {
 
 export function NavBar({ isHome = false }: NavBarProps) {
   const [menuOpen, setMenuOpen] = useState(false);
-  const isMobile = useMediaQuery("(max-width: 360px)");
+  const isMobile = useMediaQuery("(max-width: 640px)");
 
   const toggleMenuMobile = () => setMenuOpen((prev) => !prev);
 
   return (
-    <header className="sticky top-0 z-10  bg-background/70 border-b backdrop-blur">
+    <header className="sticky top-0 z-10 bg-background/70 border-b backdrop-blur px-2">
       <div
         className={cn(
           "flex items-center justify-between px-4",
@@ -42,15 +42,16 @@ export function NavBar({ isHome = false }: NavBarProps) {
           ) : (
             <div className="flex items-center gap-2">
               {isHome && <SearchBar />}
-              <Button asChild className="sm:p-0">
-                <Link
-                  href="/contact/add"
-                  className="hidden lg:flex lg:items-center sm:hidden"
-                >
-                  <PlusCircle />
-                  Adicionar contato
-                </Link>
-              </Button>
+
+              {!isMobile && (
+                <Button asChild className="sm:p-0">
+                  <Link href="/contact/add" className="">
+                    <PlusCircle />
+                    Adicionar contato
+                  </Link>
+                </Button>
+              )}
+
               <ModeToggle />
             </div>
           )}

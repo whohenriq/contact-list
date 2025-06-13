@@ -106,7 +106,7 @@ export function ContactForm({ isEdit = false, contact }: ContactFormProps) {
 
         <div className="flex justify-between items-center h-full w-full mt-6 px-6 lg:px-0 md:px-0">
           <Button type="button" className="bg-red-600 hover:bg-red-700">
-            <Link href="/">Cancelar</Link>
+            <Link href="/">{isEdit ? "Voltar" : "Cancelar"}</Link>
           </Button>
 
           <Button type="submit" variant={"default"}>

@@ -35,7 +35,9 @@ export function Content({ contactId }: ContentProps) {
   return (
     <main className="flex items-center justify-center h-full w-full mx-auto">
       <div className="w-3xl h-full">
-        <h1 className="text-2xl font-bold mb-4">Editar um contato</h1>
+        <h1 className="text-2xl font-bold mb-4 mt-2">
+          Editar informações do contato
+        </h1>
         <ContactForm isEdit contact={contactDetail!} />
       </div>
     </main>
