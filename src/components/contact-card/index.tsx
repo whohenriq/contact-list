@@ -44,7 +44,7 @@ export function ContactCard({ contact }: ContactProps) {
       >
         <CardContent
           className="flex items-start justify-between gap-4 px-4"
-          onClick={() => router.push(`/contacts/${contact.id}`)}
+          // onClick={() => router.push(`/contacts/${contact.id}`)}
         >
           <div className="flex items-start gap-4">
             <Avatar className="h-12 w-12">

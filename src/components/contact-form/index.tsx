@@ -45,12 +45,12 @@ export function ContactForm({ isEdit = false, contact }: ContactFormProps) {
 
           <FormField
             control={form.control}
-            name="birthday"
+            name="phone"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Data de Nascimento</FormLabel>
+                <FormLabel>Telefone</FormLabel>
                 <FormControl>
-                  <Input {...field} type="date" />
+                  <Input {...field} placeholder="Ex: (11) 91234-5678" />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -75,12 +75,12 @@ export function ContactForm({ isEdit = false, contact }: ContactFormProps) {
 
           <FormField
             control={form.control}
-            name="phone"
+            name="birthday"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Telefone</FormLabel>
+                <FormLabel>Data de Nascimento</FormLabel>
                 <FormControl>
-                  <Input {...field} placeholder="Ex: (11) 91234-5678" />
+                  <Input {...field} type="date" />
                 </FormControl>
                 <FormMessage />
               </FormItem>

@@ -13,21 +13,18 @@ import { putContact } from "@/actions/patch-contact";
 
 export const contactSchema = z.object({
   name: z.string().min(2, { message: "Deve conter no mínimo 2 caracteres" }),
-  email: z.string().email("E-mail inválido"),
   phone: z
     .string()
+    .min(10, { message: "Deve conter no mínimo 10 caracteres" })
+    .max(15, { message: "Deve conter no máximo 15 caracteres" })
     .regex(
-      /^(\+55\s?)?(\(?\d{2}\)?\s?)?\d{4,5}-?\d{4}$/,
-      "Telefone inválido (ex: (XX) XXXXX-XXXX)"
+      /^(?:\(?\d{2}\)?\s?)?(?:9\d{4}|\d{4})-?\d{4}$/,
+      "Telefone inválido. Ex: (11) 91234-5678)"
     ),
+
+  email: z.string().optional(),
+  birthday: z.string().optional(),
   address: z.string().optional(),
-  birthday: z
-    .string()
-    .regex(
-      /^\d{4}-\d{2}-\d{2}$/,
-      "Data de nascimento deve estar no formato YYYY-MM-DD"
-    )
-    .optional(),
 });
 
 export type ContactFormSchema = z.infer<typeof contactSchema>;
@@ -59,10 +56,17 @@ export function useContactForm({ contact }: UseContactFormProps) {
 
   const onSubmit = async (data: ContactFormSchema) => {
     setIsSubmitting(true);
+
+    const payload = {
+      ...data,
+      email: data.email ?? "",
+      birthday: data.birthday ?? "",
+      address: data.address ?? "",
+    };
     try {
       const response = contact
-        ? await putContact({ data: { id: contact.id, ...data } })
-        : await addNewContact({ data });
+        ? await putContact({ data: { id: contact.id, ...payload } })
+        : await addNewContact({ data: payload });
 
       if (!response) {
         toast({
